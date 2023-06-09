@@ -31,13 +31,15 @@ The regions of the brain that experience the most significant variations in the 
 </p>
 
 
-Consequently, these local susceptibility differences cause variations in the precessional frequency of spins, also known as the Larmor frequency (\gamma_0). As a result, phase accumulation occurs over time. Therefore, the greater the difference in $\chi$  or the longer the duration, the more spread-out the phases become. The relationship between the Larmor frequency, the B0 field offset and phase accumulation can be described as follows:
+Consequently, these local susceptibility differences cause variations in the precessional frequency of spins, also known as the Larmor frequency ($\omega_0$). As a result, phase accumulation occurs over time. Therefore, the greater the difference in $\chi$  or the longer the duration, the more spread-out the phases become. The relationship between the Larmor frequency, the B0 field offset and phase accumulation can be described as follows:
 
-$$ \omega_0 = \gamma B_0 + \delta \chi B_0$$
-$$ \phi = \int \gamma(t) dt $$
+$$ \omega_0 = \gamma B_0 + \delta \chi $$
+
+![equation](https://latex.codecogs.com/svg.latex?\phi%20%3D%20%5Cint%20%5Comega%20%28t%29%20dt)
+
 
 ### Phase wrap concept
-The B0 offset affects magnitude and phase images differently. In magnitude images, the signal decays exponentially with increasing B0 offset, while phase accumulation increases in a linear manner.  Click [here](https://github.com/brainhack-school2023/Vejdani_project/results/FID.html) to see the interactive figure. 
+The B0 offset affects magnitude and phase images differently. In magnitude images, the signal decays exponentially with increasing B0 offset, while phase accumulation increases in a linear manner.  Click [here](https://github.com/brainhack-school2023/Vejdani_project/blob/main/results/FID.html){:target="_blank"} to see the interactive figure. 
 
 As a result, the reconstructed phase map from the complex MRI signal contains information about the B0 field variation. However, due to the involvement of various sources in phase variations, the phase maps can only provide an approximation of the ΔB0 field. Most of these sources do not change with different echo times, except for the phase induced by B0 inhomogeneity, which scales with the echo time. Therefore, to obtain a ΔB0 field map, at least two phase maps with different echo times need to be acquired.
 While MRI-based B0 mapping can be performed using any MRI pulse sequence, the fast gradient-echo (GRE) method is commonly used due to its speed, ease of use, and inherent sensitivity to B0 offsets. The pulse sequence diagram for GRE is as follows: 
@@ -47,10 +49,10 @@ While MRI-based B0 mapping can be performed using any MRI pulse sequence, the fa
 
 
 One problem with phase images is that any frequency beyond 1/ΔTE will wrap into the range of -π to π. This is because phase is calculated using inverse tangent and cannot accommodate values outside this range.
-Click [here](https://github.com/brainhack-school2023/Vejdani_project/results/Phase_evolution.html) to see the interactive figure.
+Click [here](https://github.com/brainhack-school2023/Vejdani_project/blob/main/results/Phase_evolution.html){:target="_blank"} to see the interactive figure.
 
 To avoid phase wrapping, the echo time for the first phase data and the ΔTE (difference in echo times) for the linear fitting approach are typically kept low enough. Consequently, you would expect to observe fewer phase wraps with lower echo times, and an increasing number of wraps with longer echo times and larger B0 offsets (e.g., in the skull base). Additionally, geometric distortion has a more pronounced effect in the phase encoding direction where the sampling rate is lower.
-Click [here](https://github.com/brainhack-school2023/Vejdani_project/results/Phase_evolution.html) to see the interactive figure (Note that phase enconding is along AP direction in these images).
+Click [here](https://github.com/brainhack-school2023/Vejdani_project/blob/main/results/Phase_evolution.html){:target="_blank"} to see the interactive figure (Note that phase enconding is along AP direction in these images).
 
 ## Main Objectives
 
@@ -101,6 +103,7 @@ It's worth noting that the notebook includes instructions for cloning the datase
 
 ## Acknowledgements
 
+I extend my sincere gratitude to the Brainhack team of 2023 for their unwavering support throughout the duration of the course. I would like to express my special appreciation to Dr. Eva Alonso Ortiz for her valuable support and expertise, which proved instrumental in the successful completion of this project.
 
 
 ## References
