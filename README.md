@@ -27,7 +27,7 @@ While the achieved homogeneity after shimming is generally satisfactory for most
 The regions of the brain that experience the most significant variations in the main magnetic field, B0, are primarily located at the skull base. This is due to the high $\chi$ difference between the paramagnetic air in sinuses and the diamagnetic brain tissues. Paramagnetic materials tend to enhance the B0 field by aligning towards it, while diamagnetic materials weaken the B0 field by aligning in the opposite direction.
 
 <p align="center">
-<img src="docs/magnetic_susceptibility.png" alt="Courtesy of Allen D. Elster, MRIquestions.com">
+<img src="docs/magnetic_susceptibility.png" width="350" alt="Courtesy of Allen D. Elster, MRIquestions.com">
 </p>
 
 
@@ -35,7 +35,7 @@ Consequently, these local susceptibility differences cause variations in the pre
 
 $$ \omega 0 = \gamma B_0 + \delta \chi $$
 
-$$ \phi = \int \omega(t) \, dt $$
+$$ \phi = \int \omega(t) dt $$
 
 ### Phase wrap concept
 The B0 offset affects magnitude and phase images differently. In magnitude images, the signal decays exponentially with increasing B0 offset, while phase accumulation increases in a linear manner. 
