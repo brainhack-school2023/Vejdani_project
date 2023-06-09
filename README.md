@@ -164,7 +164,7 @@ Click  for interactive plot.
 
 Click  for interactive plot. 
 
-To see the overlayed rs-fMRI images on standard MNI space click.
+To see the overlayed rs-fMRI images on standard MNI space click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/MNI_overlay.html).
 
 As evident from the observations, the lack of a field map to rectify the geometrical distortion in the EPI images leads to a reduced number of functional connections detected in the frontal and temporal lobes, which are particularly affected by a substantial B0 offset.
 
