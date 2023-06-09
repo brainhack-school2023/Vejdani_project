@@ -136,7 +136,7 @@ To perform this step, FSL command line tools such as TOPUP, FUGUE, and FLIRT are
 
 ### rs-fMRI with and without distortion correction
 For the last part of the project, the third dataset is employed, which consists of resting-state functional MRI (rs-fMRI) data and the unwrapped phase difference image. rs-fMRI allows us to investigate brain regions that exhibit correlated temporal activity, forming functional networks. In order to analyze these networks, various brain regions from a known atlas are selected, and their signal time series are compared to construct a matrix known as the connectivity matrix. 
-A figure of this atlas can be seen [here]()
+A figure of this atlas can be seen.
 
 
 
@@ -155,13 +155,16 @@ The results are as follows:
 <p align="center">
 <img src="results/corrected_connectivity.png">
 </p>
-Click [here]() for interactive plot. 
+
+Click  for interactive plot. 
+
 <p align="center">
 <img src="results/Uncorrected_connectivity.png">
 </p>
-Click [here]() for interactive plot. 
 
-To see the overlayed rs-fMRI images on standard MNI space click [here]()
+Click  for interactive plot. 
+
+To see the overlayed rs-fMRI images on standard MNI space click.
 
 As evident from the observations, the lack of a field map to rectify the geometrical distortion in the EPI images leads to a reduced number of functional connections detected in the frontal and temporal lobes, which are particularly affected by a substantial B0 offset.
 
