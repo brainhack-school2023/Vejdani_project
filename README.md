@@ -136,7 +136,7 @@ To perform this step, FSL command line tools such as TOPUP, FUGUE, and FLIRT are
 
 ### rs-fMRI with and without distortion correction
 For the last part of the project, the third dataset is employed, which consists of resting-state functional MRI (rs-fMRI) data and the unwrapped phase difference image. rs-fMRI allows us to investigate brain regions that exhibit correlated temporal activity, forming functional networks. In order to analyze these networks, various brain regions from a known atlas are selected, and their signal time series are compared to construct a matrix known as the connectivity matrix. 
-A figure of this atlas can be seen.
+A figure of this atlas can be seen [here](https://behrouzvia.github.io/brianhack_html_files/atlas.html).
 
 
 
@@ -156,13 +156,13 @@ The results are as follows:
 <img src="results/corrected_connectivity.png">
 </p>
 
-Click  for interactive plot. 
+Click [here](https://behrouzvia.github.io/brianhack_html_files/connectivity_corrected.html) for interactive plot. 
 
 <p align="center">
 <img src="results/Uncorrected_connectivity.png">
 </p>
 
-Click  for interactive plot. 
+Click [here](https://behrouzvia.github.io/brianhack_html_files/connectivity_uncorrected.html) for interactive plot. 
 
 To see the overlayed rs-fMRI images on standard MNI space click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/MNI_overlay.html).
 
