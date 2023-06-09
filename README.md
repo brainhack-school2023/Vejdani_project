@@ -135,13 +135,14 @@ EPI images can be utilized to approximate a field map by acquiring two volumes w
 To perform this step, FSL command line tools such as TOPUP, FUGUE, and FLIRT are employed for the analysis. These tools enable the processing and correction of distortion in the EPI images, contributing to improved image quality.
 
 ### rs-fMRI with and without distortion correction
-For the last part of the project, the third dataset is employed, which consists of resting-state functional MRI (rs-fMRI) data and the unwrapped phase difference image. rs-fMRI allows us to investigate brain regions that exhibit correlated temporal activity, forming functional networks. In order to analyze these networks, various brain regions from a known atlas are selected, and their signal time series are compared to construct a matrix known as the connectivity matrix. A figure of this atlas can be seen [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/atlas.html)
+For the last part of the project, the third dataset is employed, which consists of resting-state functional MRI (rs-fMRI) data and the unwrapped phase difference image. rs-fMRI allows us to investigate brain regions that exhibit correlated temporal activity, forming functional networks. In order to analyze these networks, various brain regions from a known atlas are selected, and their signal time series are compared to construct a matrix known as the connectivity matrix. 
+A figure of this atlas can be seen [here]()
 
 
 
 The connectivity matrix represents the strength of functional connections between different regions of the brain. To quantify these connections, a Pearson correlation is calculated between the time series of different regions in the matrix. The resulting correlation values are encoded using a color bar to visualize the connectivity patterns. Finally, the process of brain masking and retrieving connectivity data was accomplished for a single subject using the nilearn library[7].
 
-There results are as follows:
+The results are as follows:
 
 <p align="center">
 <img src="results/Corrected_CM.png">
@@ -154,13 +155,13 @@ There results are as follows:
 <p align="center">
 <img src="results/corrected_connectivity.png">
 </p>
-Click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/corrected_connectivity.html) for interactive plot. 
+Click [here]() for interactive plot. 
 <p align="center">
 <img src="results/Uncorrected_connectivity.png">
 </p>
-Click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/uncorrected_connectivity.html) for interactive plot. 
+Click [here]() for interactive plot. 
 
-To see the overlayed rs-fMRI images on standard MNI space click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/MNI_overlay.html)
+To see the overlayed rs-fMRI images on standard MNI space click [here]()
 
 As evident from the observations, the lack of a field map to rectify the geometrical distortion in the EPI images leads to a reduced number of functional connections detected in the frontal and temporal lobes, which are particularly affected by a substantial B0 offset.
 
