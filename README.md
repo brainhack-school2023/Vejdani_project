@@ -92,21 +92,86 @@ It's worth noting that the notebook includes instructions for cloning the datase
 
 ## Results
 ### Double-echo GRE field mapping
+To calculate a field map using the double-echo GRE method, one needs to subtract two consecutive phase maps and divide the result by the difference in echo times between them. However, when dealing with the second phase image, there is a possibility of phase wrapping. When the real phase evolution is larger (e.g., for Δν = 250 Hz and ΔTE = 3.0 ms, resulting in Δφ = 1.5π), the calculated phase will wrap to -0.5π. In general, phase wrapping introduces an incorrect estimation of the local magnetic field. In this specific example, -0.5π would be equivalent to a -83 Hz offset not +250 Hz offset. This highlights the impact of phase unwrapping on the accurate determination of the local magnetic field. So, simply subtracting the phase maps in this case would yield erroneous phase values, as the second phase map is wrapped to a lower phase value compared to the first phase.
 
+To address this issue, there are two recommended approaches. The first is to spatially unwrap both phase images before performing the subtraction [5]. This ensures that the phase values are correctly aligned and eliminates the wrapping effect. Alternatively, a better approach is to calculate the complex difference between the two phase images and then perform spatial unwrapping on the resulting complex difference image. This method is already implemented in the shimming toolbox [6]. By taking the complex difference, we can reduce the need for additional spatial unwrapping, which is known to be error-prone. These concepts can be visualized in the following figure: 
+
+<p align="center">
+<img src="results/double_echo.png">
+</p>
 
 ### Mutli-echo GRE field mapping
+To calculate a field map using the Multi-echo GRE method, we employ the slope of the linear regression of phases versus echo times. Accurate estimates of magnetic field offsets are achieved by utilizing an increased number of evolution delays and extending the duration of these delays. While the acquired phase during longer delays may be wrapped, the initial delay is typically chosen in such a way that no phase wrapping occurs.
+Based on the linear phase-time trend established by the first delay(s), subsequent delays can be unwrapped by adding or subtracting an integer multiple of 2π to the calculated phase. This unwrapping process ensures that the phases are correctly aligned and removes the effects of wrapping. You can refer to [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/Phase_evolution.html) for further details. Once all phases have been temporally unwrapped, a linear least-squares fit of the phase-time curve is performed, providing the best estimate of the magnetic field offset. This linear regression analysis allows us to determine the relationship between the phase and time, enabling accurate characterization of the magnetic field offset. 
+However, the order of performing temporal and spatial unwrapping is crucial. In the following figure, we can compare the results of field maps calculated with the order of temporal+spatial unwrapping and reverse (spatial+temporal unwrapping).
+
+<p align="center">
+<img src="results/linear_fitting_new_method.png">
+</p>
+
+<p align="center">
+<img src="results/linear_fitting_st.png">
+</p>
 
 
 ### EPI field mapping
+EPI images can be utilized to approximate a field map by acquiring two volumes with opposite phase encoding directions. The difference in distortion between these two acquisitions is then utilized in a least squares algorithm to estimate the field map. Although the resulting field map may exhibit some artifacts, as demonstrated in the following images, it is still sufficient to correct for distortion to some extent.
+<p align="center">
+<img src="results/EPI_AP.png">
+</p>
 
+<p align="center">
+<img src="results/EPI_PA.png">
+</p>
+
+<p align="center">
+<img src="results/EPI_field_map.png">
+</p>
+
+<p align="center">
+<img src="results/Corrected_EPI.png">
+</p>
+
+To perform this step, FSL command line tools such as TOPUP, FUGUE, and FLIRT are employed for the analysis. These tools enable the processing and correction of distortion in the EPI images, contributing to improved image quality.
+
+### rs-fMRI with and without distortion correction
+For the last part of the project, the third dataset is employed, which consists of resting-state functional MRI (rs-fMRI) data and the unwrapped phase difference image. rs-fMRI allows us to investigate brain regions that exhibit correlated temporal activity, forming functional networks. In order to analyze these networks, various brain regions from a known atlas are selected, and their signal time series are compared to construct a matrix known as the connectivity matrix. A figure of this atlas can be seen [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/atlas.html)
+
+
+
+The connectivity matrix represents the strength of functional connections between different regions of the brain. To quantify these connections, a Pearson correlation is calculated between the time series of different regions in the matrix. The resulting correlation values are encoded using a color bar to visualize the connectivity patterns. Finally, the process of brain masking and retrieving connectivity data was accomplished for a single subject using the nilearn library[7].
+
+There results are as follows:
+
+<p align="center">
+<img src="results/Corrected_CM.png">
+</p>
+
+<p align="center">
+<img src="results/Uncorrected_CM.png">
+</p>
+
+<p align="center">
+<img src="results/corrected_connectivity.png">
+</p>
+Click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/corrected_connectivity.html) for interactive plot. 
+<p align="center">
+<img src="results/Uncorrected_connectivity.png">
+</p>
+Click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/uncorrected_connectivity.html) for interactive plot. 
+
+To see the overlayed rs-fMRI images on standard MNI space click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/MNI_overlay.html)
+
+As evident from the observations, the lack of a field map to rectify the geometrical distortion in the EPI images leads to a reduced number of functional connections detected in the frontal and temporal lobes, which are particularly affected by a substantial B0 offset.
 
 ## Conclusions
 
+In conclusion, these findings highlighted the significance of field mapping in mitigating distortions and improving the detection of functional connections. The integration of advanced tools like nilearn facilitated the calculation and visualization of functional connectivity matrices. Overall, this project underscores the crucial role of field mapping and distortion correction for enhancing the accuracy and reliability of functional connectivity studies.
 
 
 ## Acknowledgements
 
-I extend my sincere gratitude to the Brainhack team of 2023 for their unwavering support throughout the duration of the course. I would like to express my special appreciation to Dr. Eva Alonso Ortiz for her valuable support and expertise, which proved instrumental in the successful completion of this project.
+I extend my sincere gratitude to the Brainhack team of 2023 for their unwavering support throughout the duration of the course. I have learned a lot throughout this course. Also, I would like to express my special appreciation to Dr. Eva Alonso Ortiz for her valuable support and expertise, which proved instrumental in the successful completion of this project.
 
 
 ## References
@@ -118,4 +183,8 @@ I extend my sincere gratitude to the Brainhack team of 2023 for their unwavering
 3. Kim, T., Lee, Y., Zhao, T., Hetherington, H.P. and Pan, J.W., 2017. Gradient‐echo EPI using a high‐degree shim insert coil at 7 T: Implications for BOLD fMRI. Magnetic resonance in medicine, 78(5), pp.1734-1745.
 4. Webb, A.G. (ed.) (2016) Magnetic Resonance Technology: Hardware and System Component Design. Cambridge: Royal Society of Chemistry (New Developments in NMR). Available at: https://doi.org/10.1039/9781782623878.
 
-5. D'Astous, A., Cereza, G., Papp, D., Gilbert, K.M., Stockmann, J.P., Alonso‐Ortiz, E. and Cohen‐Adad, J., 2023. Shimming toolbox: An open‐source software toolbox for B0 and B1 shimming in MRI. Magnetic Resonance in Medicine, 89(4), pp.1401-1417.
+5. m. Jenkinson, fast, automated, n-dimensional phase-unwrapping algorithm, Magn. Reson. Med., 2003, 49, 193–197.
+
+6. D'Astous, A., Cereza, G., Papp, D., Gilbert, K.M., Stockmann, J.P., Alonso‐Ortiz, E. and Cohen‐Adad, J., 2023. Shimming toolbox: An open‐source software toolbox for B0 and B1 shimming in MRI. Magnetic Resonance in Medicine, 89(4), pp.1401-1417.
+
+7. Abraham, A., Pedregosa, F., Eickenberg, M., Gervais, P., Mueller, A., Kossaifi, J., Gramfort, A., Thirion, B. and Varoquaux, G., 2014. Machine learning for neuroimaging with scikit-learn. Frontiers in Neuroinformatics, 8.
