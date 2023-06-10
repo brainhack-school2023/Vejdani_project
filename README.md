@@ -30,7 +30,7 @@ The regions of the brain that experience the most significant variations in the 
 <img src="docs/magnetic_susceptibility.png" width="350" >
 </p>
 
-*** Courtesy of Allen D. Elster, MRIquestions.com ***
+***Courtesy of Allen D. Elster, MRIquestions.com***
 
 Consequently, these local susceptibility differences cause variations in the precessional frequency of spins, also known as the Larmor frequency ($\omega 0$). As a result, phase accumulation occurs over time. Therefore, the greater the difference in $\chi$  or the longer the duration, the more spread-out the phases become. The relationship between the Larmor frequency, the B0 field offset and phase accumulation can be described as follows:
 
@@ -51,7 +51,7 @@ While MRI-based B0 mapping can be performed using any MRI pulse sequence, the fa
 <img src="docs/GRE_sequence_diagram.png" width="350">
 </p>
 
-*** Courtesy of Allen D. Elster, MRIquestions.com ***
+***Courtesy of Allen D. Elster, MRIquestions.com***
 
 One problem with phase images is that any frequency beyond 1/ΔTE will wrap into the range of -π to π. This is because phase is calculated using inverse tangent and cannot accommodate values outside this range.
 
