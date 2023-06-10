@@ -29,7 +29,8 @@ The regions of the brain that experience the most significant variations in the 
 <p align="center">
 <img src="docs/magnetic_susceptibility.png" width="350" >
 </p>
-*Courtesy of Allen D. Elster, MRIquestions.com*
+
+*** Courtesy of Allen D. Elster, MRIquestions.com ***
 
 Consequently, these local susceptibility differences cause variations in the precessional frequency of spins, also known as the Larmor frequency ($\omega 0$). As a result, phase accumulation occurs over time. Therefore, the greater the difference in $\chi$  or the longer the duration, the more spread-out the phases become. The relationship between the Larmor frequency, the B0 field offset and phase accumulation can be described as follows:
 
@@ -45,10 +46,12 @@ Click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/bl
 As a result, the reconstructed phase map from the complex MRI signal contains information about the B0 field variation. However, due to the involvement of various sources in phase variations, the phase maps can only provide an approximation of the ΔB0 field. Most of these sources do not change with different echo times, except for the phase induced by B0 inhomogeneity, which scales with the echo time. Therefore, to obtain a ΔB0 field map, at least two phase maps with different echo times need to be acquired.
 While MRI-based B0 mapping can be performed using any MRI pulse sequence, the fast gradient-echo (GRE) method is commonly used due to its speed, ease of use, and inherent sensitivity to B0 offsets. The pulse sequence diagram for GRE is as follows: 
 
+
 <p align="center">
 <img src="docs/GRE_sequence_diagram.png" width="350">
 </p>
-*Courtesy of Allen D. Elster, MRIquestions.com*
+
+*** Courtesy of Allen D. Elster, MRIquestions.com ***
 
 One problem with phase images is that any frequency beyond 1/ΔTE will wrap into the range of -π to π. This is because phase is calculated using inverse tangent and cannot accommodate values outside this range.
 
