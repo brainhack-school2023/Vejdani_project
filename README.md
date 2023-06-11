@@ -41,7 +41,7 @@ $$ \phi = \int \omega(t) dt $$
 ### Phase wrap concept
 The B0 offset affects magnitude and phase images differently. In magnitude images, the signal decays exponentially with increasing B0 offset, while phase accumulation increases in a linear manner. 
 
-Click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/FID.html) to see the interactive figure. 
+Click [here](https://brainhack-school2023.github.io/Vejdani_project/FID.html) to see the interactive figure. 
 
 As a result, the reconstructed phase map from the complex MRI signal contains information about the B0 field variation. However, due to the involvement of various sources in phase variations, the phase maps can only provide an approximation of the ΔB0 field. Most of these sources do not change with different echo times, except for the phase induced by B0 inhomogeneity, which scales with the echo time. Therefore, to obtain a ΔB0 field map, at least two phase maps with different echo times need to be acquired.
 While MRI-based B0 mapping can be performed using any MRI pulse sequence, the fast gradient-echo (GRE) method is commonly used due to its speed, ease of use, and inherent sensitivity to B0 offsets. The pulse sequence diagram for GRE is as follows: 
@@ -55,11 +55,11 @@ While MRI-based B0 mapping can be performed using any MRI pulse sequence, the fa
 
 One problem with phase images is that any frequency beyond 1/ΔTE will wrap into the range of -π to π. This is because phase is calculated using inverse tangent and cannot accommodate values outside this range.
 
-Click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/Phase_evolution.html) to see the interactive figure.
+Click [here](https://brainhack-school2023.github.io/Vejdani_project/Phase_evolution.html) to see the interactive figure.
 
 To avoid phase wrapping, the echo time for the first phase data and the ΔTE (difference in echo times) for the linear fitting approach are typically kept low enough. Consequently, you would expect to observe fewer phase wraps with lower echo times, and an increasing number of wraps with longer echo times and larger B0 offsets (e.g., in the skull base). Additionally, geometric distortion has a more pronounced effect in the phase encoding direction where the sampling rate is lower.
 
-Click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/phase_wraps.html) to see the interactive figure (Note that phase enconding is along AP direction in these images).
+Click [here](https://brainhack-school2023.github.io/Vejdani_project/phase_wraps.html) to see the interactive figure (Note that phase enconding is along AP direction in these images).
 
 ## Main Objectives
 
@@ -106,7 +106,7 @@ To address this issue, there are two recommended approaches. The first is to spa
 
 ### Mutli-echo GRE field mapping
 To calculate a field map using the Multi-echo GRE method, we employ the slope of the linear regression of phases versus echo times. Accurate estimates of magnetic field offsets are achieved by utilizing an increased number of evolution delays and extending the duration of these delays. While the acquired phase during longer delays may be wrapped, the initial delay is typically chosen in such a way that no phase wrapping occurs.
-Based on the linear phase-time trend established by the first delay(s), subsequent delays can be unwrapped by adding or subtracting an integer multiple of 2π to the calculated phase. This unwrapping process ensures that the phases are correctly aligned and removes the effects of wrapping. You can refer to [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/Phase_evolution.html) for further details. Once all phases have been temporally unwrapped, a linear least-squares fit of the phase-time curve is performed, providing the best estimate of the magnetic field offset. This linear regression analysis allows us to determine the relationship between the phase and time, enabling accurate characterization of the magnetic field offset. 
+Based on the linear phase-time trend established by the first delay(s), subsequent delays can be unwrapped by adding or subtracting an integer multiple of 2π to the calculated phase. This unwrapping process ensures that the phases are correctly aligned and removes the effects of wrapping. You can refer to [here](https://brainhack-school2023.github.io/Vejdani_project/Phase_evolution.html) for further details. Once all phases have been temporally unwrapped, a linear least-squares fit of the phase-time curve is performed, providing the best estimate of the magnetic field offset. This linear regression analysis allows us to determine the relationship between the phase and time, enabling accurate characterization of the magnetic field offset. 
 However, the order of performing temporal and spatial unwrapping is crucial. In the following figure, we can compare the results of field maps calculated with the order of temporal+spatial unwrapping and reverse (spatial+temporal unwrapping).
 
 <p align="center">
@@ -140,7 +140,7 @@ To perform this step, FSL command line tools such as TOPUP, FUGUE, and FLIRT are
 
 ### rs-fMRI with and without distortion correction
 For the last part of the project, the third dataset is employed, which consists of resting-state functional MRI (rs-fMRI) data and the unwrapped phase difference image. rs-fMRI allows us to investigate brain regions that exhibit correlated temporal activity, forming functional networks. In order to analyze these networks, various brain regions from a known atlas are selected, and their signal time series are compared to construct a matrix known as the connectivity matrix. 
-A figure of this atlas can be seen [here](https://behrouzvia.github.io/brianhack_html_files/atlas.html).
+A figure of this atlas can be seen [here](https://brainhack-school2023.github.io/Vejdani_project/atlas.html).
 
 
 
@@ -160,15 +160,15 @@ The results are as follows:
 <img src="results/corrected_connectivity.png">
 </p>
 
-Click [here](https://behrouzvia.github.io/brianhack_html_files/connectivity_corrected.html) for interactive plot. 
+Click [here](https://brainhack-school2023.github.io/Vejdani_project/connectivity_corrected.html) for interactive plot. 
 
 <p align="center">
 <img src="results/Uncorrected_connectivity.png">
 </p>
 
-Click [here](https://behrouzvia.github.io/brianhack_html_files/connectivity_uncorrected.html) for interactive plot. 
+Click [here](https://brainhack-school2023.github.io/Vejdani_project/connectivity_uncorrected.html) for interactive plot. 
 
-To see the overlayed rs-fMRI images on standard MNI space click [here](https://nbviewer.org/github/brainhack-school2023/Vejdani_project/blob/main/results/MNI_overlay.html).
+To see the overlayed rs-fMRI images on standard MNI space click [here](https://brainhack-school2023.github.io/Vejdani_project/MNI_overlay.html).
 
 As evident from the observations, the lack of a field map to rectify the geometrical distortion in the EPI images leads to a reduced number of functional connections detected in the frontal and temporal lobes, which are particularly affected by a substantial B0 offset.
 
