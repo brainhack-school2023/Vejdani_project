@@ -36,9 +36,9 @@ Consequently, these local susceptibility differences cause variations in the pre
 
 $$ \omega 0 = \gamma B_0 $$
 
-$$ \omega = \omega 0 + \Delta \chi $$
+$$ \omega = \omega 0 + \omega 0 . \Delta \chi $$
 
-$$ \phi = \int \omega(t) dt $$
+$$ \phi = \int \omega(t) /dt $$
 
 ### Phase wrap concept
 The B0 offset affects magnitude and phase images differently. In magnitude images, the signal decays exponentially with increasing B0 offset, while phase accumulation increases in a linear manner. 
