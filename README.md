@@ -36,7 +36,7 @@ Consequently, these local susceptibility differences cause variations in the pre
 
 $$ \omega 0 = \gamma B_0 $$
 
-$$ \omega = \omega 0 + \omega 0 . \Delta \chi $$
+$$ \omega = \omega 0 + (\omega 0 \cdot \Delta \chi) $$
 
 $$ \phi = \int \omega(t) /dt $$
 
